@@ -1,83 +1,61 @@
-README.md
-# MCON 364 – Functional Programming Micro Project
-## Smart Data Processing Engine
-
----
+# MCON 364 Test One Repo
 
 ## Overview
+This test is designed to evaluate your Java coding skills that you built over last several lessons.
 
-In this assignment, you will build a small **functional data processing engine** using modern Java (Java 21).
+The problems are intentionally similar in **style and skill level** to the practice work you already completed on:
+- functional interfaces
+- very basic streams
+- `Map`, `Optional`, and simple state changes with undo
 
-This micro-project integrates:
+The wording, class names, and scenarios are different, but the techniques are the same.
 
-- Functional interfaces
-  - `Supplier`
-  - `Predicate`
-  - `Function`
-  - `Consumer`
-- Lambda expressions
-- Functional interface chaining
-- `Optional`
-- Switch expressions
-- Pattern matching for switch (Java 21)
-- Generic methods
+## Rules
+- Use **Java 21**.
+- Keep method signatures exactly as given.
+- Do **not** rename packages, classes, or methods.
+- Do **not** add external libraries.
+- Prefer clear, direct solutions over clever ones.
+- You only need to use streams is the problem states so. 
+- Follow the comments inside each class.
 
+## Test Structure
+There are **15 graded problems** total.
 
----
+### Part A — FunctionalWarmup (5 problems)
+1. Build a `Supplier<Integer>` for the current month number.
+2. Build a `Predicate<String>` that checks whether a string is longer than 5 characters.
+3. Build a chained `Predicate<Integer>` that checks whether a number is positive and even.
+4. Build a `Function<String, Integer>` that counts words in a string.
+5. Process a list of labels by filtering, trimming, uppercasing, and collecting.
 
-##  Learning Objectives
+### Part B — BasicStreamsQuiz (5 problems)
+6. Return a sorted list of all course names.
+7. Count how many scores are at least a threshold.
+8. Return the first word longer than a given length as an `Optional`.
+9. Square every number in a list using streams.
+10. Compute the average of passing scores.
 
-By completing this assignment, you will be able to:
+### Part C — StudyTracker (5 problems)
+11. Add a learner.
+12. Add a score for an existing learner (undoable).
+13. Compute an average for one learner using `Optional`.
+14. Convert that average into a letter band.
+15. Undo the last state-changing operation.
 
-- Pass behavior as data
-- Design reusable generic pipelines
-- Chain functional interfaces
-- Use `Optional` correctly instead of `null`
-- Apply Java 21 pattern matching in switch expressions
-- Compose transformations cleanly and safely
+## Tips
+- `Supplier`, `Predicate`, `Function`, and `Consumer` should use lambdas or function references.
+- For stream problems, use stream operations instead of manual loops.
+- For the tracker section, read the method comments carefully before coding.
 
----
-
-##  Conceptual Goal
-
-Everything in this project revolves around one idea:
-
-> **Behavior can be injected into a system.**
-
-Instead of hardcoding logic inside loops, we supply rules and transformations as functional parameters.
-
-This is the foundation of:
-
-- Streams
-- Modern APIs
-- Clean architecture
-- Functional-style Java
-
----
-
-## Part 1 In class exercise:
-Implement all the TODO in the FunctionalInterfaceExercises.java file.
-
-## Part 2 Homework:
-Implement all the TODOs in the SmartDataEngine.java file.
-
-## Repository Structure
-
-```
-func_prog/
-├── README.md                                        # This file
-├── pom.xml                                          # Maven configuration
-├── .gitignore                                       # Git ignore file
-└── src/
-    ├── main/java/edu/touro/las/mcon364/func_prog/
-    │   ├── demo/
-    │   │   └── Demo.java                            # Working examples
-    │   ├── exercises/
-    │   │   └── FunctionalInterfaceExercises.java    # In-class exercises
-    │   └── homework/
-    │       └── SmartDataEngine.java                 # Homework project
-    └── test/java/edu/touro/las/mcon364/func_prog/
-        └── homework/
-            └── SmartDataEngineTest.java             # Tests for homework
+## Run tests locally to make sure your code compiles
+```bash
+mvn test
 ```
 
+## Files to complete
+- `FunctionalWarmup.java`
+- `BasicStreamsQuiz.java`
+- `StudyTracker.java`
+
+Good luck.
