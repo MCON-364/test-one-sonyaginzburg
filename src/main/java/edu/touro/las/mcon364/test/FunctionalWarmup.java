@@ -49,18 +49,18 @@ public class FunctionalWarmup {
      * - Words are separated by one or more spaces (use can use regex "\\s+")
      *
      */
-    public static Function<String, Integer> wordCounter() {
-        Function<String, Integer> trim = String::trim;
-
-        return s -> {
-            int count = 0;
-            trim.apply(s);
-            if (s.length() < 0) {
-                return 0;
-            }
-            return count;
-        };
-    } //fix this
+//    public static Function<String, Integer> wordCounter() {
+////        Function<String, Integer> trim = String::trim;
+////
+////        return s -> {
+////            int count = 0;
+////            trim.apply(s);
+////            if (s.length() < 0) {
+////                return 0;
+////            }
+////            return count;
+////        };
+//    } //fix this
 
     /**
      * Problem 5
@@ -73,14 +73,14 @@ public class FunctionalWarmup {
      * Example:
      * ["  math ", "", " java", "  "] -> ["MATH", "JAVA"]
      */
-    public static List<String> cleanLabels(List<String> labels) {
-        //Function<String, String> cleanLabel =  labels.remove(" ")
-        return labels.stream()
-                .remove(" ")
-                .trim()
-                .toUpperCase()
-                .sorted()
-                .toList();
-
-    }
+//    public static List<String> cleanLabels(List<String> labels) {
+//        //Function<String, String> cleanLabel =  labels.remove(" ")
+//        return labels.stream()
+//                .remove(" ")
+//                .trim()
+//                .toUpperCase()
+//                .sorted()
+//                .toList();
+//
+//    }
 }
