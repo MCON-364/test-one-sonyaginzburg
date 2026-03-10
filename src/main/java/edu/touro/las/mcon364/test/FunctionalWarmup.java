@@ -13,7 +13,7 @@ public class FunctionalWarmup {
      * Return a Supplier that gives the current month number (1-12).
      */
     public static Supplier<Integer> currentMonthSupplier() {
-        throw new UnsupportedOperationException();
+        return () -> LocalDate.now().getMonthValue();
     }
 
     /**
@@ -22,7 +22,7 @@ public class FunctionalWarmup {
      * has more than 5 characters.
      */
     public static Predicate<String> longerThanFive() {
-        throw new UnsupportedOperationException();
+        return s -> s.length() > 5;
     }
 
     /**
@@ -34,7 +34,9 @@ public class FunctionalWarmup {
      * Prefer chaining smaller predicates.
      */
     public static Predicate<Integer> positiveAndEven() {
-        throw new UnsupportedOperationException();
+        Predicate<Integer> positive = x -> x > 0;
+        Predicate<Integer> even = x -> x % 2 == 0;
+        return positive.and(even);
     }
 
     /**
@@ -48,8 +50,17 @@ public class FunctionalWarmup {
      *
      */
     public static Function<String, Integer> wordCounter() {
-        throw new UnsupportedOperationException();
-    }
+        Function<String, Integer> trim = String::trim;
+
+        return s -> {
+            int count = 0;
+            trim.apply(s);
+            if (s.length() < 0) {
+                return 0;
+            }
+            return count;
+        };
+    } //fix this
 
     /**
      * Problem 5
@@ -63,6 +74,13 @@ public class FunctionalWarmup {
      * ["  math ", "", " java", "  "] -> ["MATH", "JAVA"]
      */
     public static List<String> cleanLabels(List<String> labels) {
-        throw new UnsupportedOperationException();
+        //Function<String, String> cleanLabel =  labels.remove(" ")
+        return labels.stream()
+                .remove(" ")
+                .trim()
+                .toUpperCase()
+                .sorted()
+                .toList();
+
     }
 }

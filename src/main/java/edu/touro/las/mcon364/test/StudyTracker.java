@@ -25,7 +25,11 @@ public class StudyTracker {
      * Throw IllegalArgumentException if name is null or blank.
      */
     public boolean addLearner(String name) {
-        throw new UnsupportedOperationException();
+        if (scoresByLearner.containsKey(name)) {
+            return false;
+        }
+        scoresByLearner.put(name, new ArrayList<>());
+        return true;
     }
 
     /**
@@ -42,7 +46,12 @@ public class StudyTracker {
      * This operation should be undoable.
      */
     public boolean addScore(String name, int score) {
-        throw new UnsupportedOperationException();
+        var scores = scoresByLearner.get(name);
+        if (scores == null) {
+            return false;
+        }
+        scores.add(score);
+        return true;
     }
 
     /**
@@ -54,7 +63,16 @@ public class StudyTracker {
      * - the learner has no scores
      */
     public Optional<Double> averageFor(String name) {
-        throw new UnsupportedOperationException();
+        var learners = scoresByLearner.get(name);
+        if (learners == null || learners.isEmpty()) {
+            return Optional.empty();
+        }
+        int sum = 0;
+        for (var score : scoresByLearner.get(name)) {
+            sum += score;
+        }
+        double avg = (double) sum / scoresByLearner.size();
+        return Optional.of(avg);
     }
 
     /**
@@ -70,7 +88,20 @@ public class StudyTracker {
      * Return Optional.empty() when no average exists.
      */
     public Optional<String> letterBandFor(String name) {
-        throw new UnsupportedOperationException();
+        Optional<Double> avgOptional = averageFor(name);
+        if (avgOptional.isEmpty()) {
+            return Optional.empty();
+        }
+        double avg = avgOptional.get();
+        // had to use AI to figure out how to use switch expression and  dividing averages
+        String letter = switch ((int)avg / 10) {
+            case 10, 9 -> {yield "A";}
+            case 8 -> {yield "B";}
+            case 7 -> {yield "C";}
+            case 6 -> {yield "D";}
+            default -> {yield "F";}
+        };
+        return Optional.of(letter);
     }
 
     /**
@@ -81,7 +112,11 @@ public class StudyTracker {
      * Return false if there is nothing to undo.
      */
     public boolean undoLastChange() {
-        throw new UnsupportedOperationException();
+        if (undoStack.isEmpty()) {
+            return false;
+        }
+        var action = undoStack.pop();
+        return true;
     }
 
 
